@@ -1,5 +1,6 @@
 import wx
 
+
 class MyWindow(wx.Frame):
     """This will simulate the three body problem"""
     def __init__(self, parent, title):
@@ -38,7 +39,7 @@ class MyWindow(wx.Frame):
         grid.Add(self.m3_ypos_label, pos=(7, 3))
         self.m3_zpos_label = wx.StaticText(self, label=" z-pos:   ")
         grid.Add(self.m3_zpos_label, pos=(8, 3))
-        
+
         # velocity labels
         self.m1_xvel_label = wx.StaticText(self, label=" x-vel:   ")
         grid.Add(self.m1_xvel_label, pos=(0, 6))
@@ -137,6 +138,7 @@ class MyWindow(wx.Frame):
         # set events:
         self.Bind(wx.EVT_MENU, self.OnAbout, menuAbout)
         self.Bind(wx.EVT_MENU, self.OnExit, menuExit)
+        self.Bind(wx.EVT_BUTTON, self.OnClickGo)
 
         # grid something?
         hSizer.Add(grid, 0, wx.ALL, 5)
@@ -148,10 +150,57 @@ class MyWindow(wx.Frame):
     # add our new functions
     def OnAbout(self, e):
         # An "about message with a dialogue box
-        dlg = wx.MessageDialog(self, "An applet that " \
-            "simulates the 3 Body Probelm", "Jarred Green 2016", wx.OK)
+        dlg = wx.MessageDialog(self, "An applet that "
+                               "simulates the 3 Body Probelm",
+                               "Jarred Green 2016", wx.OK)
         dlg.ShowModal()  # show it
         dlg.Destroy()  # close window when finished
+
+    def OnClickGo(self, e):
+        ''' when you click the button, this def grabs the
+        values from all the text boxes and stores them as vars
+        beginning with 'i_' to signify 'initial' '''
+
+        # get masses
+        i_m1_mass = self.m1_mass.GetValue()
+        i_m2_mass = self.m2_mass.GetValue()
+        i_m3_mass = self.m3_mass.GetValue()
+
+        # get positions
+        i_m1_xpos = self.m1_xpos.GetValue()
+        i_m1_ypos = self.m1_ypos.GetValue()
+        i_m1_zpos = self.m1_zpos.GetValue()
+
+        i_m2_xpos = self.m2_xpos.GetValue()
+        i_m2_ypos = self.m2_ypos.GetValue()
+        i_m2_zpos = self.m2_zpos.GetValue()
+
+        i_m3_xpos = self.m3_xpos.GetValue()
+        i_m3_ypos = self.m3_ypos.GetValue()
+        i_m3_zpos = self.m3_zpos.GetValue()
+
+        # get velocities
+        i_m1_xvel = self.m1_xvel.GetValue()
+        i_m1_yvel = self.m1_yvel.GetValue()
+        i_m1_zvel = self.m1_zvel.GetValue()
+
+        i_m2_xvel = self.m2_xvel.GetValue()
+        i_m2_yvel = self.m2_yvel.GetValue()
+        i_m2_zvel = self.m2_zvel.GetValue()
+
+        i_m3_xvel = self.m3_xvel.GetValue()
+        i_m3_yvel = self.m3_yvel.GetValue()
+        i_m3_zvel = self.m3_zvel.GetValue()
+
+        initial_conditions = [i_m1_mass, i_m2_mass, i_m3_mass, i_m1_xpos,
+                              i_m1_ypos, i_m1_zpos, i_m1_xvel, i_m1_yvel,
+                              i_m1_zvel, i_m2_xpos, i_m2_ypos, i_m2_zpos,
+                              i_m2_xvel, i_m2_yvel, i_m2_zvel, i_m3_xpos,
+                              i_m3_ypos, i_m3_zpos, i_m3_xvel, i_m3_yvel,
+                              i_m3_zvel]
+
+        print initial_conditions
+        return initial_conditions
 
     def OnExit(self, e):
         # close the frame
