@@ -21,6 +21,7 @@ class simulation(object):
         scene.title = 'Three Body Mechanics'
         scene.autoscale = True
         scene.fullscreen = False
+        print i_c
 
         # Initialize the three masses
         self.m1 = sphere(
@@ -55,14 +56,14 @@ class simulation(object):
 
         # move the frame to the center of mass
         # also, adjust the sizes of the spheres for constant density
-        vcenter = ((m1.mass * m1.vel + m2.mass * m2.vel + m3.mass * m3.vel) /
-                   (m1.mass + m2.mass + m3.mass))
-        for i in [m1, m2, m3]:
+        vcenter = ((self.m1.mass * self.m1.vel + self.m2.mass * self.m2.vel + self.m3.mass * self.m3.vel) /
+                   (self.m1.mass + self.m2.mass + self.m3.mass))
+        for i in [self.m1, self.m2, self.m3]:
             i.vel -= vcenter
             i.radius = 0.5 * i.mass ** (1.0 / 3.0)
 
         # dt is the timestep in computations / sec
-        dt = 0.01
+        self.dt = 0.01
 
     def dydt(self, y):
 
@@ -85,22 +86,23 @@ class simulation(object):
 
         return deriv
 
-    while True:
-        # the rate of the calculations
-        rate(100)
+    def compute(self):
+        while True:
+            # the rate of the calculations
+            rate(100)
 
-        # solved using the 4th order Runge Kutta method
-        y = [m1.pos, m1.vel, m2.pos, m2.vel, m3.pos, m3.vel]
-        k1 = dt * dydt(y)
-        k2 = dt * dydt(y + k1 / 2.0)
-        k3 = dt * dydt(y + k2 / 2.0)
-        k4 = dt * dydt(y + k3)
-        dy = k1 / 6.0 + k2 / 3.0 + k3 / 3.0 + k4 / 6.0
+            # solved using the 4th order Runge Kutta method
+            y = [self.m1.pos, self.m1.vel, self.m2.pos, self.m2.vel, self.m3.pos, self.m3.vel]
+            k1 = self.dt * dydt(y)
+            k2 = self.dt * dydt(y + k1 / 2.0)
+            k3 = self.dt * dydt(y + k2 / 2.0)
+            k4 = self.dt * dydt(y + k3)
+            dy = k1 / 6.0 + k2 / 3.0 + k3 / 3.0 + k4 / 6.0
 
-        # now update the animation
-        m1.pos += dy[0]
-        m1.vel += dy[1]
-        m2.pos += dy[2]
-        m2.vel += dy[3]
-        m3.pos += dy[4]
-        m3.vel += dy[5]
+            # now update the animation
+            self.m1.pos += dy[0]
+            self.m1.vel += dy[1]
+            self.m2.pos += dy[2]
+            self.m2.vel += dy[3]
+            self.m3.pos += dy[4]
+            self.m3.vel += dy[5]

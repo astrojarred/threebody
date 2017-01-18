@@ -201,8 +201,9 @@ class MyWindow(wx.Frame):
                               i_m2_xvel, i_m2_yvel, i_m2_zvel, i_m3_xpos,
                               i_m3_ypos, i_m3_zpos, i_m3_xvel, i_m3_yvel,
                               i_m3_zvel]
-
-        sim(initial_conditions)
+        # print initial_conditions
+        mysim = sim(initial_conditions)
+        plot = mysim.compu
 
     def OnExit(self, e):
         # close the frame
