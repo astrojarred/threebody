@@ -1,4 +1,6 @@
 import wx
+import numpy as np
+from wx.lib.masked import NumCtrl
 
 
 class MyWindow(wx.Frame):
@@ -60,46 +62,6 @@ class MyWindow(wx.Frame):
         self.m6_zvel_label = wx.StaticText(self, label=" z-vel:   ")
         grid.Add(self.m6_zvel_label, pos=(8, 6))
 
-        # position textboxes
-        self.m1_xpos = wx.TextCtrl(self)
-        grid.Add(self.m1_xpos, pos=(0, 4))
-        self.m1_ypos = wx.TextCtrl(self)
-        grid.Add(self.m1_ypos, pos=(1, 4))
-        self.m1_zpos = wx.TextCtrl(self)
-        grid.Add(self.m1_zpos, pos=(2, 4))
-        self.m2_xpos = wx.TextCtrl(self)
-        grid.Add(self.m2_xpos, pos=(3, 4))
-        self.m2_ypos = wx.TextCtrl(self)
-        grid.Add(self.m2_ypos, pos=(4, 4))
-        self.m2_zpos = wx.TextCtrl(self)
-        grid.Add(self.m2_zpos, pos=(5, 4))
-        self.m3_xpos = wx.TextCtrl(self)
-        grid.Add(self.m3_xpos, pos=(6, 4))
-        self.m3_ypos = wx.TextCtrl(self)
-        grid.Add(self.m3_ypos, pos=(7, 4))
-        self.m3_zpos = wx.TextCtrl(self)
-        grid.Add(self.m3_zpos, pos=(8, 4))
-
-        # velocity textboxes
-        self.m1_xvel = wx.TextCtrl(self)
-        grid.Add(self.m1_xvel, pos=(0, 7))
-        self.m1_yvel = wx.TextCtrl(self)
-        grid.Add(self.m1_yvel, pos=(1, 7))
-        self.m1_zvel = wx.TextCtrl(self)
-        grid.Add(self.m1_zvel, pos=(2, 7))
-        self.m2_xvel = wx.TextCtrl(self)
-        grid.Add(self.m2_xvel, pos=(3, 7))
-        self.m2_yvel = wx.TextCtrl(self)
-        grid.Add(self.m2_yvel, pos=(4, 7))
-        self.m2_zvel = wx.TextCtrl(self)
-        grid.Add(self.m2_zvel, pos=(5, 7))
-        self.m3_xvel = wx.TextCtrl(self)
-        grid.Add(self.m3_xvel, pos=(6, 7))
-        self.m3_yvel = wx.TextCtrl(self)
-        grid.Add(self.m3_yvel, pos=(7, 7))
-        self.m3_zvel = wx.TextCtrl(self)
-        grid.Add(self.m3_zvel, pos=(8, 7))
-
         # mass labels
         self.mass1_label = wx.StaticText(self, label=" mass: ")
         grid.Add(self.mass1_label, pos=(1, 0))
@@ -108,12 +70,52 @@ class MyWindow(wx.Frame):
         self.mass3_label = wx.StaticText(self, label=" mass: ")
         grid.Add(self.mass3_label, pos=(7, 0))
 
+        # position textboxes
+        self.m1_xpos = wx.lib.masked.NumCtrl(self, autoSize=False, fractionWidth=2)
+        grid.Add(self.m1_xpos, pos=(0, 4))
+        self.m1_ypos = wx.lib.masked.NumCtrl(self, autoSize=False, fractionWidth=2)
+        grid.Add(self.m1_ypos, pos=(1, 4))
+        self.m1_zpos = wx.lib.masked.NumCtrl(self, autoSize=False, fractionWidth=2)
+        grid.Add(self.m1_zpos, pos=(2, 4))
+        self.m2_xpos = wx.lib.masked.NumCtrl(self, autoSize=False, fractionWidth=2)
+        grid.Add(self.m2_xpos, pos=(3, 4))
+        self.m2_ypos = wx.lib.masked.NumCtrl(self, autoSize=False, fractionWidth=2)
+        grid.Add(self.m2_ypos, pos=(4, 4))
+        self.m2_zpos = wx.lib.masked.NumCtrl(self, autoSize=False, fractionWidth=2)
+        grid.Add(self.m2_zpos, pos=(5, 4))
+        self.m3_xpos = wx.lib.masked.NumCtrl(self, autoSize=False, fractionWidth=2)
+        grid.Add(self.m3_xpos, pos=(6, 4))
+        self.m3_ypos = wx.lib.masked.NumCtrl(self, autoSize=False, fractionWidth=2)
+        grid.Add(self.m3_ypos, pos=(7, 4))
+        self.m3_zpos = wx.lib.masked.NumCtrl(self, autoSize=False, fractionWidth=2)
+        grid.Add(self.m3_zpos, pos=(8, 4))
+
+        # velocity textboxes
+        self.m1_xvel = wx.lib.masked.NumCtrl(self, autoSize=False, fractionWidth=2)
+        grid.Add(self.m1_xvel, pos=(0, 7))
+        self.m1_yvel = wx.lib.masked.NumCtrl(self, autoSize=False, fractionWidth=2)
+        grid.Add(self.m1_yvel, pos=(1, 7))
+        self.m1_zvel = wx.lib.masked.NumCtrl(self, autoSize=False, fractionWidth=2)
+        grid.Add(self.m1_zvel, pos=(2, 7))
+        self.m2_xvel = wx.lib.masked.NumCtrl(self, autoSize=False, fractionWidth=2)
+        grid.Add(self.m2_xvel, pos=(3, 7))
+        self.m2_yvel = wx.lib.masked.NumCtrl(self, autoSize=False, fractionWidth=2)
+        grid.Add(self.m2_yvel, pos=(4, 7))
+        self.m2_zvel = wx.lib.masked.NumCtrl(self, autoSize=False, fractionWidth=2)
+        grid.Add(self.m2_zvel, pos=(5, 7))
+        self.m3_xvel = wx.lib.masked.NumCtrl(self, autoSize=False, fractionWidth=2)
+        grid.Add(self.m3_xvel, pos=(6, 7))
+        self.m3_yvel = wx.lib.masked.NumCtrl(self, autoSize=False, fractionWidth=2)
+        grid.Add(self.m3_yvel, pos=(7, 7))
+        self.m3_zvel = wx.lib.masked.NumCtrl(self, autoSize=False, fractionWidth=2)
+        grid.Add(self.m3_zvel, pos=(8, 7))
+
         # mass textboxes
-        self.m1_mass = wx.TextCtrl(self)
+        self.m1_mass = wx.lib.masked.NumCtrl(self, autoSize=False, fractionWidth=2)
         grid.Add(self.m1_mass, pos=(1, 1))
-        self.m2_mass = wx.TextCtrl(self)
+        self.m2_mass = wx.lib.masked.NumCtrl(self, autoSize=False, fractionWidth=2)
         grid.Add(self.m2_mass, pos=(4, 1))
-        self.m3_mass = wx.TextCtrl(self)
+        self.m3_mass = wx.lib.masked.NumCtrl(self, autoSize=False, fractionWidth=2)
         grid.Add(self.m3_mass, pos=(7, 1))
 
         # create a button to submit values
