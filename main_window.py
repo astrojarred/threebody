@@ -201,9 +201,6 @@ class MyWindow(wx.Frame):
                               i_m3_ypos, i_m3_zpos, i_m3_xvel, i_m3_yvel,
                               i_m3_zvel]
 
-        print initial_conditions
-        return initial_conditions
-
     def OnExit(self, e):
         # close the frame
         self.Close(True)

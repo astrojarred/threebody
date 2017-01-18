@@ -3,7 +3,7 @@
 # module within the threebody simulation
 
 from visual import *
-# import numpy as np
+import numpy as np
 
 
 class simulation(i_c):
@@ -23,9 +23,9 @@ class simulation(i_c):
 
     # Initialize the three masses
     m1 = sphere(
-        pos=vector(i_c[1], 0, 0),
-        vel=vector(0, 1.0, 0),
-        mass=10,
+        pos=vector(i_c[3], i_c[4], i_c[5]),
+        vel=vector(i_c[6], i_c[7], i_c[8]),
+        mass=i_c[0],
         color=color.yellow,
         make_trail=True,
         interval=2,
@@ -33,9 +33,9 @@ class simulation(i_c):
     )
 
     m2 = sphere(
-        pos=vector(-10, 0, 3),
-        vel=vector(-0.3, -1.0, 0.5),
-        mass=10,
+        pos=vector(i_c[9], i_c[10], i_c[11]),
+        vel=vector(i_c[12], i_c[13], i_c[14]),
+        mass=i_c[1],
         color=color.red,
         make_trail=True,
         interval=2,
@@ -43,9 +43,9 @@ class simulation(i_c):
     )
 
     m3 = sphere(
-        pos=vector(0, 0, 0),
-        vel=vector(0, 0.1, 0.1),
-        mass=10,
+        pos=vector(i_c[15], i_c[16], i_c[17]),
+        vel=vector(i_c[18], i_c[19], i_c[20]),
+        mass=i_c[2],
         color=color.green,
         make_trail=True,
         interval=2,
@@ -62,6 +62,7 @@ class simulation(i_c):
         i.radius = 0.5 * i.mass ** (1.0 / 3.0)
 
     def dydt(y):
+
         # calculate the derivative of the vector y
         deriv = zeros((6, 3), dtype=vector)
         radius_12 = y[0] - y[2]
