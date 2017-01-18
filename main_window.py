@@ -1,6 +1,7 @@
 import wx
 import numpy as np
 from wx.lib.masked import NumCtrl
+from visual import *
 from simulation import simulation as sim
 
 
@@ -72,56 +73,94 @@ class MyWindow(wx.Frame):
         grid.Add(self.mass3_label, pos=(7, 0))
 
         # position textboxes
-        self.m1_xpos = wx.lib.masked.NumCtrl(self, autoSize=False, fractionWidth=2)
+        self.m1_xpos = wx.lib.masked.NumCtrl(self, autoSize=False,
+                                             fractionWidth=2)
         grid.Add(self.m1_xpos, pos=(0, 4))
-        self.m1_ypos = wx.lib.masked.NumCtrl(self, autoSize=False, fractionWidth=2)
+        self.m1_ypos = wx.lib.masked.NumCtrl(self, autoSize=False,
+                                             fractionWidth=2)
         grid.Add(self.m1_ypos, pos=(1, 4))
-        self.m1_zpos = wx.lib.masked.NumCtrl(self, autoSize=False, fractionWidth=2)
+        self.m1_zpos = wx.lib.masked.NumCtrl(self, autoSize=False,
+                                             fractionWidth=2)
         grid.Add(self.m1_zpos, pos=(2, 4))
-        self.m2_xpos = wx.lib.masked.NumCtrl(self, autoSize=False, fractionWidth=2)
+        self.m2_xpos = wx.lib.masked.NumCtrl(self, autoSize=False,
+                                             fractionWidth=2)
         grid.Add(self.m2_xpos, pos=(3, 4))
-        self.m2_ypos = wx.lib.masked.NumCtrl(self, autoSize=False, fractionWidth=2)
+        self.m2_ypos = wx.lib.masked.NumCtrl(self, autoSize=False,
+                                             fractionWidth=2)
         grid.Add(self.m2_ypos, pos=(4, 4))
-        self.m2_zpos = wx.lib.masked.NumCtrl(self, autoSize=False, fractionWidth=2)
+        self.m2_zpos = wx.lib.masked.NumCtrl(self, autoSize=False,
+                                             fractionWidth=2)
         grid.Add(self.m2_zpos, pos=(5, 4))
-        self.m3_xpos = wx.lib.masked.NumCtrl(self, autoSize=False, fractionWidth=2)
+        self.m3_xpos = wx.lib.masked.NumCtrl(self, autoSize=False,
+                                             fractionWidth=2)
         grid.Add(self.m3_xpos, pos=(6, 4))
-        self.m3_ypos = wx.lib.masked.NumCtrl(self, autoSize=False, fractionWidth=2)
+        self.m3_ypos = wx.lib.masked.NumCtrl(self, autoSize=False,
+                                             fractionWidth=2)
         grid.Add(self.m3_ypos, pos=(7, 4))
-        self.m3_zpos = wx.lib.masked.NumCtrl(self, autoSize=False, fractionWidth=2)
+        self.m3_zpos = wx.lib.masked.NumCtrl(self, autoSize=False,
+                                             fractionWidth=2)
         grid.Add(self.m3_zpos, pos=(8, 4))
 
         # velocity textboxes
-        self.m1_xvel = wx.lib.masked.NumCtrl(self, autoSize=False, fractionWidth=2)
+        self.m1_xvel = wx.lib.masked.NumCtrl(self, autoSize=False,
+                                             fractionWidth=2)
         grid.Add(self.m1_xvel, pos=(0, 7))
-        self.m1_yvel = wx.lib.masked.NumCtrl(self, autoSize=False, fractionWidth=2)
+        self.m1_yvel = wx.lib.masked.NumCtrl(self, autoSize=False,
+                                             fractionWidth=2)
         grid.Add(self.m1_yvel, pos=(1, 7))
-        self.m1_zvel = wx.lib.masked.NumCtrl(self, autoSize=False, fractionWidth=2)
+        self.m1_zvel = wx.lib.masked.NumCtrl(self, autoSize=False,
+                                             fractionWidth=2)
         grid.Add(self.m1_zvel, pos=(2, 7))
-        self.m2_xvel = wx.lib.masked.NumCtrl(self, autoSize=False, fractionWidth=2)
+        self.m2_xvel = wx.lib.masked.NumCtrl(self, autoSize=False,
+                                             fractionWidth=2)
         grid.Add(self.m2_xvel, pos=(3, 7))
-        self.m2_yvel = wx.lib.masked.NumCtrl(self, autoSize=False, fractionWidth=2)
+        self.m2_yvel = wx.lib.masked.NumCtrl(self, autoSize=False,
+                                             fractionWidth=2)
         grid.Add(self.m2_yvel, pos=(4, 7))
-        self.m2_zvel = wx.lib.masked.NumCtrl(self, autoSize=False, fractionWidth=2)
+        self.m2_zvel = wx.lib.masked.NumCtrl(self, autoSize=False,
+                                             fractionWidth=2)
         grid.Add(self.m2_zvel, pos=(5, 7))
-        self.m3_xvel = wx.lib.masked.NumCtrl(self, autoSize=False, fractionWidth=2)
+        self.m3_xvel = wx.lib.masked.NumCtrl(self, autoSize=False,
+                                             fractionWidth=2)
         grid.Add(self.m3_xvel, pos=(6, 7))
-        self.m3_yvel = wx.lib.masked.NumCtrl(self, autoSize=False, fractionWidth=2)
+        self.m3_yvel = wx.lib.masked.NumCtrl(self, autoSize=False,
+                                             fractionWidth=2)
         grid.Add(self.m3_yvel, pos=(7, 7))
-        self.m3_zvel = wx.lib.masked.NumCtrl(self, autoSize=False, fractionWidth=2)
+        self.m3_zvel = wx.lib.masked.NumCtrl(self, autoSize=False,
+                                             fractionWidth=2)
         grid.Add(self.m3_zvel, pos=(8, 7))
 
         # mass textboxes
-        self.m1_mass = wx.lib.masked.NumCtrl(self, autoSize=False, fractionWidth=2)
+        self.m1_mass = wx.lib.masked.NumCtrl(self, autoSize=False,
+                                             fractionWidth=2)
         grid.Add(self.m1_mass, pos=(1, 1))
-        self.m2_mass = wx.lib.masked.NumCtrl(self, autoSize=False, fractionWidth=2)
+        self.m2_mass = wx.lib.masked.NumCtrl(self, autoSize=False,
+                                             fractionWidth=2)
         grid.Add(self.m2_mass, pos=(4, 1))
-        self.m3_mass = wx.lib.masked.NumCtrl(self, autoSize=False, fractionWidth=2)
+        self.m3_mass = wx.lib.masked.NumCtrl(self, autoSize=False,
+                                             fractionWidth=2)
         grid.Add(self.m3_mass, pos=(7, 1))
 
         # create a button to submit values
-        self.submit_button = wx.Button(self, label=" GO ", size=(400, 30))
-        grid.Add(self.submit_button, pos=(10, 3), span=(1, 6))
+        # i_c_set tells you what input to accept for initial conditions
+        # where 0 = user input (default), 1 = stable orbit, 2 = binary
+        i_c_set = 0
+        self.submit_button = wx.Button(self, label=" GO ", size=(100, 30))
+        grid.Add(self.submit_button, pos=(10, 3))
+        # create 2 buttons for example orbits
+        self.stable_button = wx.Button(self, label=" Circular Orbits ",
+                                       size=(100, 30))
+        grid.Add(self.stable_button, pos=(10, 4))
+        self.binary_button = wx.Button(self, label=" Binary Orbit ",
+                                       size=(100, 30))
+        grid.Add(self.binary_button, pos=(10, 5))
+
+        # add a text box for animation speed
+        self.speed_label = wx.StaticText(self, label=" Animation Speed: ")
+        grid.Add(self.speed_label, pos=(9, 0))
+        self.speed_val = wx.lib.masked.NumCtrl(self, autoSize=False,
+                                               value=100)
+        grid.Add(self.speed_val, pos=(9, 1))
 
         # setting up menu
         filemenu = wx.Menu()
@@ -141,16 +180,17 @@ class MyWindow(wx.Frame):
         # set events:
         self.Bind(wx.EVT_MENU, self.OnAbout, menuAbout)
         self.Bind(wx.EVT_MENU, self.OnExit, menuExit)
-        self.Bind(wx.EVT_BUTTON, self.OnClickGo)
+        self.Bind(wx.EVT_BUTTON, self.OnClickDefault, self.submit_button)
+        self.Bind(wx.EVT_BUTTON, self.OnClickStable, self.stable_button)
+        self.Bind(wx.EVT_BUTTON, self.OnClickBinary, self.binary_button)
 
-        # grid something?
+        # grid initialization, from Dario's notes
         hSizer.Add(grid, 0, wx.ALL, 5)
         mainSizer.Add(hSizer, 0, wx.ALL, 5)
         self.SetSizerAndFit(mainSizer)
-
         self.Show(True)
 
-    # add our new functions
+    # What happens on certain clicks
     def OnAbout(self, e):
         # An "about message with a dialogue box
         dlg = wx.MessageDialog(self, "An applet that "
@@ -159,51 +199,157 @@ class MyWindow(wx.Frame):
         dlg.ShowModal()  # show it
         dlg.Destroy()  # close window when finished
 
-    def OnClickGo(self, e):
+    # when you slick the "stable orbit" button, set i_c to specific parameters
+    def OnClickDefault(self, e):
+        self.OnClickGo(e, 0)
+
+    def OnClickStable(self, e):
+        self.OnClickGo(e, 1)
+
+    def OnClickBinary(self, e):
+        self.OnClickGo(e, 2)
+
+    def OnClickGo(self, e, i_c_set):
         ''' when you click the button, this def grabs the
         values from all the text boxes and stores them as vars
         beginning with 'i_' to signify 'initial' '''
 
-        # get masses
-        i_m1_mass = self.m1_mass.GetValue()
-        i_m2_mass = self.m2_mass.GetValue()
-        i_m3_mass = self.m3_mass.GetValue()
+        # the following checks which button was pressed
+        # 0 is GO, 1 = stable orbit example, 2 = binary orbit example
+        if i_c_set == 0:
+            # get masses
+            i_m1_mass = self.m1_mass.GetValue()
+            i_m2_mass = self.m2_mass.GetValue()
+            i_m3_mass = self.m3_mass.GetValue()
 
-        # get positions
-        i_m1_xpos = self.m1_xpos.GetValue()
-        i_m1_ypos = self.m1_ypos.GetValue()
-        i_m1_zpos = self.m1_zpos.GetValue()
+            # get positions
+            i_m1_xpos = self.m1_xpos.GetValue()
+            i_m1_ypos = self.m1_ypos.GetValue()
+            i_m1_zpos = self.m1_zpos.GetValue()
 
-        i_m2_xpos = self.m2_xpos.GetValue()
-        i_m2_ypos = self.m2_ypos.GetValue()
-        i_m2_zpos = self.m2_zpos.GetValue()
+            i_m2_xpos = self.m2_xpos.GetValue()
+            i_m2_ypos = self.m2_ypos.GetValue()
+            i_m2_zpos = self.m2_zpos.GetValue()
 
-        i_m3_xpos = self.m3_xpos.GetValue()
-        i_m3_ypos = self.m3_ypos.GetValue()
-        i_m3_zpos = self.m3_zpos.GetValue()
+            i_m3_xpos = self.m3_xpos.GetValue()
+            i_m3_ypos = self.m3_ypos.GetValue()
+            i_m3_zpos = self.m3_zpos.GetValue()
 
-        # get velocities
-        i_m1_xvel = self.m1_xvel.GetValue()
-        i_m1_yvel = self.m1_yvel.GetValue()
-        i_m1_zvel = self.m1_zvel.GetValue()
+            # get velocities
+            i_m1_xvel = self.m1_xvel.GetValue()
+            i_m1_yvel = self.m1_yvel.GetValue()
+            i_m1_zvel = self.m1_zvel.GetValue()
 
-        i_m2_xvel = self.m2_xvel.GetValue()
-        i_m2_yvel = self.m2_yvel.GetValue()
-        i_m2_zvel = self.m2_zvel.GetValue()
+            i_m2_xvel = self.m2_xvel.GetValue()
+            i_m2_yvel = self.m2_yvel.GetValue()
+            i_m2_zvel = self.m2_zvel.GetValue()
 
-        i_m3_xvel = self.m3_xvel.GetValue()
-        i_m3_yvel = self.m3_yvel.GetValue()
-        i_m3_zvel = self.m3_zvel.GetValue()
+            i_m3_xvel = self.m3_xvel.GetValue()
+            i_m3_yvel = self.m3_yvel.GetValue()
+            i_m3_zvel = self.m3_zvel.GetValue()
 
-        initial_conditions = [i_m1_mass, i_m2_mass, i_m3_mass, i_m1_xpos,
-                              i_m1_ypos, i_m1_zpos, i_m1_xvel, i_m1_yvel,
-                              i_m1_zvel, i_m2_xpos, i_m2_ypos, i_m2_zpos,
-                              i_m2_xvel, i_m2_yvel, i_m2_zvel, i_m3_xpos,
-                              i_m3_ypos, i_m3_zpos, i_m3_xvel, i_m3_yvel,
-                              i_m3_zvel]
+            i_c = [i_m1_mass, i_m2_mass, i_m3_mass, i_m1_xpos,
+                   i_m1_ypos, i_m1_zpos, i_m1_xvel, i_m1_yvel,
+                   i_m1_zvel, i_m2_xpos, i_m2_ypos, i_m2_zpos,
+                   i_m2_xvel, i_m2_yvel, i_m2_zvel, i_m3_xpos,
+                   i_m3_ypos, i_m3_zpos, i_m3_xvel, i_m3_yvel,
+                   i_m3_zvel]
+
+        elif i_c_set == 1:
+            i_c = [1., 50., 5., -5., 0., 0., 0., 3., 0., 0., 0., 0., 0., 0.,
+                   0., 15., 0., 0., 0., -2., 0.]
+
+        else:
+            i_c = [10., 10., 10., 10., 0., 0., 0., 1., 0., -10., 0., 3., -0.3,
+                   -1., 0.5, 0., 0., 0., 0., 0.1, 0.1]
+
         # print initial_conditions
-        mysim = sim(initial_conditions)
-        plot = mysim.compu
+        scene = display(title='Celestial Magic',
+                        x=50, y=50, width=500, height=500)
+
+        # Initialize the three masses
+        m1 = sphere(
+            pos=vector(i_c[3], i_c[4], i_c[5]),
+            vel=vector(i_c[6], i_c[7], i_c[8]),
+            mass=i_c[0],
+            color=color.yellow,
+            make_trail=True,
+            interval=2,
+            retain=10000
+        )
+
+        m2 = sphere(
+            pos=vector(i_c[9], i_c[10], i_c[11]),
+            vel=vector(i_c[12], i_c[13], i_c[14]),
+            mass=i_c[1],
+            color=color.red,
+            make_trail=True,
+            interval=2,
+            retain=100000
+        )
+
+        m3 = sphere(
+            pos=vector(i_c[15], i_c[16], i_c[17]),
+            vel=vector(i_c[18], i_c[19], i_c[20]),
+            mass=i_c[2],
+            color=color.green,
+            make_trail=True,
+            interval=2,
+            retain=10000
+        )
+
+        # move the frame to the center of mass
+        # also, adjust the sizes of the spheres for constant density
+
+        vcenter = ((m1.mass * m1.vel + m2.mass * m2.vel + m3.mass * m3.vel) /
+                   (m1.mass + m2.mass + m3.mass))
+        for i in [m1, m2, m3]:
+            i.vel -= vcenter
+            i.radius = 0.5 * i.mass ** (1.0 / 3.0)
+
+        def dydt(y):
+            # calculate the derivative of the vector y
+            deriv = zeros((6, 3), dtype=vector)
+            radius_12 = y[0] - y[2]
+            radius_23 = y[2] - y[4]
+            radius_31 = y[4] - y[0]
+            rad_12_c = radius_12 / mag(radius_12) ** 3.0
+            rad_23_c = radius_23 / mag(radius_23) ** 3.0
+            rad_31_c = radius_31 / mag(radius_31) ** 3.0
+
+            # take derivatives
+            deriv[1] = (-m2.mass * rad_12_c) + (m3.mass * rad_31_c)
+            deriv[3] = (-m3.mass * rad_23_c) + (m1.mass * rad_12_c)
+            deriv[5] = (-m1.mass * rad_31_c) + (m2.mass * rad_23_c)
+
+            # copy the three velocities from y:
+            deriv[0:5:2] = y[1:6:2]
+
+            return deriv
+
+        # dt is the timestep in computations / sec
+        dt = 0.01
+
+        while True:
+            # the rate of the calculations
+            rate(self.speed_val.GetValue())
+            # rate(100)
+
+            # solved using the 4th order Runge Kutta method
+            y = [m1.pos, m1.vel, m2.pos, m2.vel, m3.pos, m3.vel]
+            k1 = dt * dydt(y)
+            k2 = dt * dydt(y + k1 / 2.0)
+            k3 = dt * dydt(y + k2 / 2.0)
+            k4 = dt * dydt(y + k3)
+            dy = k1 / 6.0 + k2 / 3.0 + k3 / 3.0 + k4 / 6.0
+
+            # now update the animation
+            m1.pos += dy[0]
+            m1.vel += dy[1]
+            m2.pos += dy[2]
+            m2.vel += dy[3]
+            m3.pos += dy[4]
+            m3.vel += dy[5]
 
     def OnExit(self, e):
         # close the frame
