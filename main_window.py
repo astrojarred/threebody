@@ -116,8 +116,8 @@ class MyWindow(wx.Frame):
         grid.Add(self.m3_mass, pos=(7, 1))
 
         # create a button to submit values
-        self.submit_button = wx.Button(self, label=" GO ")
-        grid.Add(self.submit_button, pos=(10, 4))
+        self.submit_button = wx.Button(self, label=" GO ", size=(400, 30))
+        grid.Add(self.submit_button, pos=(10, 3), span=(1, 6))
 
         # setting up menu
         filemenu = wx.Menu()
