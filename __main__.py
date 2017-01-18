@@ -14,33 +14,33 @@ scene.fullscreen = False
 
 # Initialize the three masses
 m1 = sphere(
-    pos=vector(1, 0, 0),
-    vel=vector(-0.1, 0, 1),
-    mass=1.0,
-    color=color.red,
-    make_trail=True,
-    interval=2,
-    retain=1000
-)
-
-m2 = sphere(
-    pos=vector(0, 1, 0),
-    vel=vector(1, -0.1, 0),
-    mass=0.5,
+    pos=vector(10.0, 0, 0),
+    vel=vector(0, 1.0, 0),
+    mass=10,
     color=color.yellow,
     make_trail=True,
     interval=2,
-    retain=1000
+    retain=10000
+)
+
+m2 = sphere(
+    pos=vector(-10, 0, 3),
+    vel=vector(-0.3, -1.0, 0.5),
+    mass=10,
+    color=color.red,
+    make_trail=True,
+    interval=2,
+    retain=100000
 )
 
 m3 = sphere(
-    pos=vector(0, 0, 1),
-    vel=vector(0, 1, -0.1),
-    mass=0.2,
-    color=color.white,
+    pos=vector(0, 0, 0),
+    vel=vector(0, 0.1, 0.1),
+    mass=10,
+    color=color.green,
     make_trail=True,
     interval=2,
-    retain=1000
+    retain=10000
 )
 
 # move the frame to the center of mass
@@ -75,11 +75,11 @@ def dydt(y):
 
 
 # dt is the timestep in computations / sec
-dt = 0.1
+dt = 0.01
 
 while True:
     # the rate of the calculations
-    rate(10)
+    rate(100)
 
     # solved using the 4th order Runge Kutta method
     y = [m1.pos, m1.vel, m2.pos, m2.vel, m3.pos, m3.vel]
