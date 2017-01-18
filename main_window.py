@@ -3,7 +3,7 @@ import wx
 class MyWindow(wx.Frame):
     """This will simulate the three body problem"""
     def __init__(self, parent, title):
-        wx.Frame.__init__(self, parent, title=title, size=(500, 500))
+        wx.Frame.__init__(self, parent, title=title, size=(700, 600))
         self.CreateStatusBar()  # a status bar at the bottom of the window
 
         # Create a grid
@@ -99,7 +99,25 @@ class MyWindow(wx.Frame):
         self.m3_zvel = wx.TextCtrl(self)
         grid.Add(self.m3_zvel, pos=(8, 7))
 
-        # velocity textboxes
+        # mass labels
+        self.mass1_label = wx.StaticText(self, label=" mass: ")
+        grid.Add(self.mass1_label, pos=(1, 0))
+        self.mass2_label = wx.StaticText(self, label=" mass: ")
+        grid.Add(self.mass2_label, pos=(4, 0))
+        self.mass3_label = wx.StaticText(self, label=" mass: ")
+        grid.Add(self.mass3_label, pos=(7, 0))
+
+        # mass textboxes
+        self.m1_mass = wx.TextCtrl(self)
+        grid.Add(self.m1_mass, pos=(1, 1))
+        self.m2_mass = wx.TextCtrl(self)
+        grid.Add(self.m2_mass, pos=(4, 1))
+        self.m3_mass = wx.TextCtrl(self)
+        grid.Add(self.m3_mass, pos=(7, 1))
+
+        # create a button to submit values
+        self.submit_button = wx.Button(self, label=" GO ")
+        grid.Add(self.submit_button, pos=(10, 4))
 
         # setting up menu
         filemenu = wx.Menu()
@@ -132,13 +150,13 @@ class MyWindow(wx.Frame):
         # An "about message with a dialogue box
         dlg = wx.MessageDialog(self, "An applet that " \
             "simulates the 3 Body Probelm", "Jarred Green 2016", wx.OK)
-        dlg.ShowModal() # show it
-        dlg.Destroy() # close window when finished
+        dlg.ShowModal()  # show it
+        dlg.Destroy()  # close window when finished
 
     def OnExit(self, e):
         # close the frame
         self.Close(True)
-        
+
 app = wx.App(False)
 frame = MyWindow(None, '3 Body Problem Simulator')
 app.MainLoop()
