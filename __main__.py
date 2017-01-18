@@ -9,14 +9,14 @@ from visual import *
 scene.width = 600
 scene.height = 600
 scene.title = 'Three Body Mechanics'
-scene.autoscale = False
+scene.autoscale = True
 scene.fullscreen = False
 
 # Initialize the three masses
 m1 = sphere(
-    pos=vector(10, 0, 0),
-    vel=vector(0, 0, 0),
-    mass=10.0,
+    pos=vector(1, 0, 0),
+    vel=vector(-0.1, 0, 1),
+    mass=1.0,
     color=color.red,
     make_trail=True,
     interval=2,
@@ -24,9 +24,9 @@ m1 = sphere(
 )
 
 m2 = sphere(
-    pos=vector(-10, 0, 3),
-    vel=vector(-0.3, -1.0, 0.5),
-    mass=10.0,
+    pos=vector(0, 1, 0),
+    vel=vector(1, -0.1, 0),
+    mass=0.5,
     color=color.yellow,
     make_trail=True,
     interval=2,
@@ -34,9 +34,9 @@ m2 = sphere(
 )
 
 m3 = sphere(
-    pos=vector(0, 0, 0),
-    vel=vector(0, 0.1, 0.1),
-    mass=10.0,
+    pos=vector(0, 0, 1),
+    vel=vector(0, 1, -0.1),
+    mass=0.2,
     color=color.white,
     make_trail=True,
     interval=2,
