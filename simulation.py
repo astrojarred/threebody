@@ -21,7 +21,7 @@ class simulation(object):
         scene.title = 'Three Body Mechanics'
         scene.autoscale = True
         scene.fullscreen = False
-        print i_c
+        # print i_c
 
         # Initialize the three masses
         self.m1 = sphere(
