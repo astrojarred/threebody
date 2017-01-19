@@ -1,0 +1,26 @@
+package:
+  name: threebodyjg
+  version: v0.1
+
+source:
+  git_rev: v0.1
+  git_url: https://github.com/astrojarred/threebodyjg
+
+requirements:
+  build:
+    - python
+    - setuptools
+    - numpy
+    - visual
+
+  run:
+    - python
+    - numpy
+    - wxpython
+    - visual
+
+about:
+  home: https://github.com/astrojarred/threebodyjg
+  license: GPL3
+  license_file: LICENSE
+  description: 'A three-body simulation'
