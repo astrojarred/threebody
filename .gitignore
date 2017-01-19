@@ -1,0 +1,8 @@
+# Compiled python modules
+*.pyc
+
+# ds store files
+*.DS_Store
+
+# spyder project
+*.spyderproject
