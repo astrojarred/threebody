@@ -141,19 +141,19 @@ class MyWindow(wx.Frame):
         grid.Add(self.m3_mass, pos=(7, 1))
 
         # add color choice boxes
-        colors = ['red', 'orange', 'yellow', 'green',
-                  'blue', 'purple', 'white']
+        self.colors = ['red', 'orange', 'yellow', 'green',
+                  'blue', 'magenta', 'white']
         self.color_1_label = wx.StaticText(self, label=" color: ")
         grid.Add(self.color_1_label, pos=(2, 0))
-        self.m1_color_choice = wx.ComboBox(self, choices=colors)
+        self.m1_color_choice = wx.Choice(self, choices=self.colors)
         grid.Add(self.m1_color_choice, pos=(2, 1))
         self.color_2_label = wx.StaticText(self, label=" color: ")
         grid.Add(self.color_2_label, pos=(5, 0))
-        self.m2_color_choice = wx.ComboBox(self, choices=colors)
+        self.m2_color_choice = wx.Choice(self, choices=self.colors)
         grid.Add(self.m2_color_choice, pos=(5, 1))
         self.color_3_label = wx.StaticText(self, label=" color: ")
         grid.Add(self.color_3_label, pos=(8, 0))
-        self.m3_color_choice = wx.ComboBox(self, choices=colors)
+        self.m3_color_choice = wx.Choice(self, choices=self.colors)
         grid.Add(self.m3_color_choice, pos=(8, 1))
 
         # create a button to submit values
@@ -269,37 +269,25 @@ class MyWindow(wx.Frame):
         scene = display(title='Celestial Magic',
                         x=50, y=50, width=500, height=500)
 
-        # pull the colors from the dropdown menus
-        '''
-        m1_color_get = self.m1_color_choice.GetValue()
-        m2_color_get = self.m2_color_choice.GetValue()
-        m3_color_get = self.m3_color_choice.GetValue()
-        print m1_color_get, m2_color_get, m3_color_get
-        m1_color = 'color.' + m1_color_get
-        m2_color = 'color.' + m2_color_get
-        m3_color = 'color.' + m3_color_get
-        print m1_color, m2_color, m3_color
-        all_colors = ['color.' + self.m1_color_choice.GetValue(),
-                      'color.' + self.m2_color_choice.GetValue(),
-                      'color.' + self.m3_color_choice.GetValue()]
-        '''
+        color_codes = [color.red, color.orange, color.yellow, color.green,
+                       color.blue, color.magenta, color.white]
 
         # Initialize the three masses
         m1 = sphere(
             pos=vector(i_c[3], i_c[4], i_c[5]),
             vel=vector(i_c[6], i_c[7], i_c[8]),
             mass=i_c[0],
-            color=color.red,
+            color=color_codes[self.m1_color_choice.GetSelection()],
             make_trail=True,
             interval=2,
-            retain=10000
+            retain=100000
         )
 
         m2 = sphere(
             pos=vector(i_c[9], i_c[10], i_c[11]),
             vel=vector(i_c[12], i_c[13], i_c[14]),
             mass=i_c[1],
-            color=color.blue,
+            color=color_codes[self.m2_color_choice.GetSelection()],
             make_trail=True,
             interval=2,
             retain=100000
@@ -309,10 +297,10 @@ class MyWindow(wx.Frame):
             pos=vector(i_c[15], i_c[16], i_c[17]),
             vel=vector(i_c[18], i_c[19], i_c[20]),
             mass=i_c[2],
-            color=color.green,
+            color=color_codes[self.m3_color_choice.GetSelection()],
             make_trail=True,
             interval=2,
-            retain=10000
+            retain=100000
         )
 
         # move the frame to the center of mass
