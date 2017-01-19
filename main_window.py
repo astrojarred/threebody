@@ -1,3 +1,8 @@
+# threebodyjg
+# A 3D gravitational 3-body simulation
+# Jarred's Project
+# University of Innsbruck, Astromundus VII, 2016
+
 import wx
 import numpy as np
 from wx.lib.masked import NumCtrl
