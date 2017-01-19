@@ -11,13 +11,13 @@ requirements:
     - python
     - setuptools
     - numpy
-    - vpython
+    - visual
 
   run:
     - python
     - numpy
     - wxpython
-    - vpython
+    - visual
 
 about:
   home: https://github.com/astrojarred/threebodyjg
