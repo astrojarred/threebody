@@ -1,6 +1,7 @@
 import wx
 import numpy as np
 from wx.lib.masked import NumCtrl
+# NumCtrl is version of TxtCtrl that only acceps numerical input
 from visual import *
 
 
@@ -142,7 +143,7 @@ class MyWindow(wx.Frame):
 
         # add color choice boxes
         self.colors = ['red', 'orange', 'yellow', 'green',
-                  'blue', 'magenta', 'white']
+                       'blue', 'magenta', 'white']
         self.color_1_label = wx.StaticText(self, label=" color: ")
         grid.Add(self.color_1_label, pos=(2, 0))
         self.m1_color_choice = wx.Choice(self, choices=self.colors)
@@ -156,6 +157,11 @@ class MyWindow(wx.Frame):
         self.m3_color_choice = wx.Choice(self, choices=self.colors)
         grid.Add(self.m3_color_choice, pos=(8, 1))
 
+        # set default colors for each mass
+        self.m1_color_choice.SetStringSelection('yellow')
+        self.m2_color_choice.SetStringSelection('green')
+        self.m3_color_choice.SetStringSelection('red')
+
         # create a button to submit values
         # i_c_set tells you what input to accept for initial conditions
         # where 0 = user input (default), 1 = stable orbit, 2 = binary
@@ -168,10 +174,10 @@ class MyWindow(wx.Frame):
         grid.Add(self.stable_button, pos=(10, 4))
         self.binary_button = wx.Button(self, label=" Binary Orbit ",
                                        size=(100, 30))
-        grid.Add(self.binary_button, pos=(10, 5))
+        grid.Add(self.binary_button, pos=(10, 6))
         self.moon_button = wx.Button(self, label=" Moon-like ",
-                                       size=(100, 30))
-        grid.Add(self.moon_button, pos=(10, 6))
+                                     size=(100, 30))
+        grid.Add(self.moon_button, pos=(10, 7))
 
         # add a text box for animation speed
         self.speed_label = wx.StaticText(self, label=" Animation Speed: ")
@@ -203,7 +209,7 @@ class MyWindow(wx.Frame):
         self.Bind(wx.EVT_BUTTON, self.OnClickBinary, self.binary_button)
         self.Bind(wx.EVT_BUTTON, self.OnClickMoon, self.moon_button)
 
-        # grid initialization, from Dario's notes
+        # grid and window initialization
         hSizer.Add(grid, 0, wx.ALL, 5)
         mainSizer.Add(hSizer, 0, wx.ALL, 5)
         self.SetSizerAndFit(mainSizer)
@@ -213,31 +219,34 @@ class MyWindow(wx.Frame):
     def OnAbout(self, e):
         # An "about message with a dialogue box
         dlg = wx.MessageDialog(self, "An applet that "
-                               "simulates the 3 Body Probelm",
-                               "Jarred Green 2016", wx.OK)
+                               "simulates the 3 Body Probelm.  Tip: Try"
+                               " setting the animation speed to '365' !",
+                               "Jarred Green 2016.", wx.OK)
         dlg.ShowModal()  # show it
         dlg.Destroy()  # close window when finished
 
     # when you slick the "stable orbit" button, set i_c to specific parameters
-    def OnClickDefault(self, e):
+    def OnClickDefault(self, e):  # user input
         self.OnClickGo(e, 0)
 
-    def OnClickStable(self, e):
+    def OnClickStable(self, e):   # stable orbit
         self.OnClickGo(e, 1)
 
-    def OnClickBinary(self, e):
+    def OnClickBinary(self, e):   # binary orbit
         self.OnClickGo(e, 2)
 
-    def OnClickMoon(self, e):
+    def OnClickMoon(self, e):     # earth-sun-moon system
         self.OnClickGo(e, 3)
 
     def OnClickGo(self, e, i_c_set):
         ''' when you click the button, this def grabs the
         values from all the text boxes and stores them as vars
-        beginning with 'i_' to signify 'initial' '''
+        beginning with 'i_' to signify 'initial'
 
-        # the following checks which button was pressed
-        # 0 is GO, 1 = stable orbit example, 2 = binary orbit example
+        i_c is the array containing all the initial conditions that
+        will be passed to the Visual Python spheres
+        the following checks which button was pressed
+        0 is GO, 1 = stable orbit example, 2 = binary orbit example '''
         if i_c_set == 0:
 
             # pull values from NumCtrl 
@@ -254,25 +263,29 @@ class MyWindow(wx.Frame):
                    self.m3_zvel.GetValue()]
 
         elif i_c_set == 1:
+            # stable orbit parameters
             i_c = [1., 50., 5., -5., 0., 0., 0., 3., 0., 0., 0., 0., 0., 0.,
                    0., 15., 0., 0., 0., -2., 0.]
 
         elif i_c_set == 2:
+            # binary system parameters
             i_c = [10., 10., 10., 10., 0., 0., 0., 1., 0., -10., 0., 3., -0.3,
                    -1., 0.5, 0., 0., 0., 0., 0.1, 0.1]
 
         else:
+            # sun-earth-moon system parameters
             i_c = [5000., 74.48, 1., 0., 0., 0., 0., 0., 0., 100., 0., 0., 0.,
                    6.32, 0., 102., 0., 0., 0., 0.01, 0.]
 
-        # open the window
+        # open the Visual Python window
         scene = display(title='Celestial Magic',
                         x=50, y=50, width=500, height=500)
 
+        # these are the attributes that will be selected by the dropdown menus
         color_codes = [color.red, color.orange, color.yellow, color.green,
                        color.blue, color.magenta, color.white]
 
-        # Initialize the three masses
+        # Initialize the three masses, using the Visual Python attributes
         m1 = sphere(
             pos=vector(i_c[3], i_c[4], i_c[5]),
             vel=vector(i_c[6], i_c[7], i_c[8]),
@@ -302,6 +315,12 @@ class MyWindow(wx.Frame):
             interval=2,
             retain=100000
         )
+
+        # code for the earth-like easter egg :D
+        if self.speed_val.GetValue() == 365:
+            for i in [m1, m2, m3]:
+                i.color = color.white
+                i.material = materials.earth
 
         # move the frame to the center of mass
         # also, adjust the sizes of the spheres for constant density
@@ -360,6 +379,7 @@ class MyWindow(wx.Frame):
         # close the frame
         self.Close(True)
 
+# Launch the window upon execution of the program
 app = wx.App(False)
 frame = MyWindow(None, '3 Body Problem Simulator')
 app.MainLoop()
