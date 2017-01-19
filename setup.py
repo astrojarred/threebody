@@ -8,5 +8,5 @@ setup(name='threebodyjg',
       author='Jarred Green',
       author_email='astrojarred@gmail.com',
       url='https://github.com/astrojarred/threebodyjg',
-      scripts=['miracle']
+      scripts=['threebody']
      )
