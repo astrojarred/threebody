@@ -5,3 +5,7 @@ A simple wxpython GUI that simulates the 3-body problem.
 - Change the color
 - Change the timestep
 - For a fun easter egg, set the timestep to 365
+
+- Credits:
+	- Dario Fadda, 
+ 	- Prof. Graham Woan for visual python simulation code
