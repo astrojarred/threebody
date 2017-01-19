@@ -2,13 +2,12 @@ import wx
 import numpy as np
 from wx.lib.masked import NumCtrl
 from visual import *
-from simulation import simulation as sim
 
 
 class MyWindow(wx.Frame):
     """This will simulate the three body problem"""
     def __init__(self, parent, title):
-        wx.Frame.__init__(self, parent, title=title, size=(700, 600))
+        wx.Frame.__init__(self, parent, title="3 Body Magic", size=(700, 600))
         self.CreateStatusBar()  # a status bar at the bottom of the window
 
         # Create a grid
@@ -154,6 +153,9 @@ class MyWindow(wx.Frame):
         self.binary_button = wx.Button(self, label=" Binary Orbit ",
                                        size=(100, 30))
         grid.Add(self.binary_button, pos=(10, 5))
+        self.moon_button = wx.Button(self, label=" Moon-like ",
+                                       size=(100, 30))
+        grid.Add(self.moon_button, pos=(10, 6))
 
         # add a text box for animation speed
         self.speed_label = wx.StaticText(self, label=" Animation Speed: ")
@@ -183,6 +185,7 @@ class MyWindow(wx.Frame):
         self.Bind(wx.EVT_BUTTON, self.OnClickDefault, self.submit_button)
         self.Bind(wx.EVT_BUTTON, self.OnClickStable, self.stable_button)
         self.Bind(wx.EVT_BUTTON, self.OnClickBinary, self.binary_button)
+        self.Bind(wx.EVT_BUTTON, self.OnClickMoon, self.moon_button)
 
         # grid initialization, from Dario's notes
         hSizer.Add(grid, 0, wx.ALL, 5)
@@ -209,6 +212,9 @@ class MyWindow(wx.Frame):
     def OnClickBinary(self, e):
         self.OnClickGo(e, 2)
 
+    def OnClickMoon(self, e):
+        self.OnClickGo(e, 3)
+
     def OnClickGo(self, e, i_c_set):
         ''' when you click the button, this def grabs the
         values from all the text boxes and stores them as vars
@@ -217,51 +223,31 @@ class MyWindow(wx.Frame):
         # the following checks which button was pressed
         # 0 is GO, 1 = stable orbit example, 2 = binary orbit example
         if i_c_set == 0:
-            # get masses
-            i_m1_mass = self.m1_mass.GetValue()
-            i_m2_mass = self.m2_mass.GetValue()
-            i_m3_mass = self.m3_mass.GetValue()
 
-            # get positions
-            i_m1_xpos = self.m1_xpos.GetValue()
-            i_m1_ypos = self.m1_ypos.GetValue()
-            i_m1_zpos = self.m1_zpos.GetValue()
-
-            i_m2_xpos = self.m2_xpos.GetValue()
-            i_m2_ypos = self.m2_ypos.GetValue()
-            i_m2_zpos = self.m2_zpos.GetValue()
-
-            i_m3_xpos = self.m3_xpos.GetValue()
-            i_m3_ypos = self.m3_ypos.GetValue()
-            i_m3_zpos = self.m3_zpos.GetValue()
-
-            # get velocities
-            i_m1_xvel = self.m1_xvel.GetValue()
-            i_m1_yvel = self.m1_yvel.GetValue()
-            i_m1_zvel = self.m1_zvel.GetValue()
-
-            i_m2_xvel = self.m2_xvel.GetValue()
-            i_m2_yvel = self.m2_yvel.GetValue()
-            i_m2_zvel = self.m2_zvel.GetValue()
-
-            i_m3_xvel = self.m3_xvel.GetValue()
-            i_m3_yvel = self.m3_yvel.GetValue()
-            i_m3_zvel = self.m3_zvel.GetValue()
-
-            i_c = [i_m1_mass, i_m2_mass, i_m3_mass, i_m1_xpos,
-                   i_m1_ypos, i_m1_zpos, i_m1_xvel, i_m1_yvel,
-                   i_m1_zvel, i_m2_xpos, i_m2_ypos, i_m2_zpos,
-                   i_m2_xvel, i_m2_yvel, i_m2_zvel, i_m3_xpos,
-                   i_m3_ypos, i_m3_zpos, i_m3_xvel, i_m3_yvel,
-                   i_m3_zvel]
+            # pull values from NumCtrl 
+            i_c = [self.m1_mass.GetValue(), self.m2_mass.GetValue(),
+                   self.m3_mass.GetValue(), self.m1_xpos.GetValue(),
+                   self.m1_ypos.GetValue(), self.m1_zpos.GetValue(),
+                   self.m1_xvel.GetValue(), self.m1_yvel.GetValue(),
+                   self.m1_zvel.GetValue(), self.m2_xpos.GetValue(),
+                   self.m2_ypos.GetValue(), self.m2_zpos.GetValue(),
+                   self.m2_xvel.GetValue(), self.m2_yvel.GetValue(),
+                   self.m2_zvel.GetValue(), self.m3_xpos.GetValue(),
+                   self.m3_ypos.GetValue(), self.m3_zpos.GetValue(),
+                   self.m3_xvel.GetValue(), self.m3_yvel.GetValue(),
+                   self.m3_zvel.GetValue()]
 
         elif i_c_set == 1:
             i_c = [1., 50., 5., -5., 0., 0., 0., 3., 0., 0., 0., 0., 0., 0.,
                    0., 15., 0., 0., 0., -2., 0.]
 
-        else:
+        elif i_c_set == 2:
             i_c = [10., 10., 10., 10., 0., 0., 0., 1., 0., -10., 0., 3., -0.3,
                    -1., 0.5, 0., 0., 0., 0., 0.1, 0.1]
+
+        else:
+            i_c = [5000., 74.48, 1., 0., 0., 0., 0., 0., 0., 100., 0., 0., 0.,
+                   6.32, 0., 102., 0., 0., 0., 0.01, 0.]
 
         # print initial_conditions
         scene = display(title='Celestial Magic',
