@@ -1,9 +1,9 @@
 package:
   name: threebodyjg
-  version: v1.0.1
+  version: v1.0.2
 
 source:
-  git_rev: v1.0.1
+  git_rev: v1.0.2
   git_url: https://github.com/astrojarred/threebodyjg
 
 requirements:
@@ -16,10 +16,6 @@ requirements:
     - python
     - numpy
     - wxpython
-
-test:
-  imports:
-    - threebodyjg
 
 about:
   home: https://github.com/astrojarred/threebodyjg
