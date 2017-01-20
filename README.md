@@ -17,5 +17,5 @@ A simple wxpython GUI that simulates the 3-body problem.
 
 
 ### Credits:
-  - Dario Fadda, 
+  - Dario Fadda
   - Prof. Graham Woan for visual python simulation code
