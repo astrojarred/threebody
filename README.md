@@ -9,6 +9,7 @@ A simple wxpython GUI that simulates the 3-body problem.
 
 
 ### Notes:
+- Coded using pep8 protocol
 - Change the initial conditions 
 - Change the color
 - Change the timestep
