@@ -3,7 +3,7 @@
 from distutils.core import setup
 
 setup(name='threebodyjg',
-      version='v1.0',
+      version='v1.0.1',
       description='A three-body simulation',
       author='Jarred Green',
       author_email='astrojarred@gmail.com',
