@@ -17,10 +17,6 @@ requirements:
     - numpy
     - wxpython
 
-test:
-  imports:
-    - threebodyjg
-
 about:
   home: https://github.com/astrojarred/threebodyjg
   license: GPL3
