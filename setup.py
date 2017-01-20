@@ -3,10 +3,10 @@
 from distutils.core import setup
 
 setup(name='threebodyjg',
-      version='1.0',
+      version='v1.0',
       description='A three-body simulation',
       author='Jarred Green',
       author_email='astrojarred@gmail.com',
-      url='https://github.com/astrojarred/threebodyjg',
+      url='https://github.com/astrojarred/threebodyjg.git',
       scripts=['threebody']
-     )
+      )
