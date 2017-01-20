@@ -3,6 +3,7 @@
 # A 3D gravitational 3-body simulation
 # Jarred's Project
 # University of Innsbruck, Astromundus VII, 2016
+# Formatted using pep8 protocol
 
 import wx
 import numpy as np
